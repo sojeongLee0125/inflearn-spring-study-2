@@ -3,13 +3,15 @@ package spring.core;
 import spring.core.member.Grade;
 import spring.core.member.Member;
 import spring.core.member.MemberService;
-import spring.core.member.MemberServiceImpl;
 
 public class MemberApp {
 
     public static void main(String[] args) {
-        // 순수한 자바 코드
-        MemberService memberService = new MemberServiceImpl();
+
+        // AppConfig 로 부터 memberService를 주입받는다.(DI)
+        AppConfig appConfig = new AppConfig();
+        MemberService memberService = appConfig.memberService();
+
         Member member = new Member(1L, "memberA", Grade.VIP);
         memberService.join(member);
 
