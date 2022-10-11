@@ -1,5 +1,7 @@
 package spring.core;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import spring.core.member.Grade;
 import spring.core.member.Member;
 import spring.core.member.MemberService;
@@ -9,10 +11,15 @@ import spring.core.order.OrderService;
 public class OrderApp {
 
     public static void main(String[] args) {
-        // AppConfig 로 부터 memberService, orderService를 주입받는다.(DI)
-        AppConfig appConfig = new AppConfig();
-        MemberService memberService = appConfig.memberService();
-        OrderService orderService = appConfig.orderService();
+
+//        AppConfig 로 부터 memberService, orderService를 주입받는다.(DI)
+//        AppConfig appConfig = new AppConfig();
+//        MemberService memberService = appConfig.memberService();
+//        OrderService orderService = appConfig.orderService();
+
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+        MemberService memberService = applicationContext.getBean("memberService", MemberService.class);
+        OrderService orderService = applicationContext.getBean("orderService", OrderService.class);
 
         Long memberId = 1L;
         Member member = new Member(memberId, "memberA", Grade.VIP);
