@@ -2,6 +2,7 @@ package spring.core;
 
 import spring.core.discount.DiscountPolicy;
 import spring.core.discount.FixDiscountPolicy;
+import spring.core.discount.RateDiscountPolicy;
 import spring.core.member.MemberRepository;
 import spring.core.member.MemberService;
 import spring.core.member.MemberServiceImpl;
@@ -26,6 +27,8 @@ public class AppConfig {
     }
 
     public DiscountPolicy discountPolicy() {
-        return new FixDiscountPolicy();
+        // return new FixDiscountPolicy();
+        // 할인 정책을 변경해도, 애플리케이션의 구성 역할을 담당하는 AppConfig만 변경하면 된다.
+        return new RateDiscountPolicy();
     }
 }
