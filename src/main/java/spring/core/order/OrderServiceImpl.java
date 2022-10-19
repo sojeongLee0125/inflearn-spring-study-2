@@ -8,7 +8,7 @@ import spring.core.member.Member;
 import spring.core.member.MemberRepository;
 
 @Component
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
     // private final MemberRepository memberRepository = new MemoryMemberRepository();
@@ -18,7 +18,7 @@ public class OrderServiceImpl implements OrderService {
     // 누군가가 클라이언트인 OrderServiceImpl에 Disco untPolicy 구현 객체를 대신 생성하고 주입해주어야 한다.
 
     private final MemberRepository memberRepository;
-    private final @MainDiscountPolicy DiscountPolicy discountPolicy;
+    private final DiscountPolicy discountPolicy;
 
     // 설계 변경으로 OrderServiceImpl 은 MemoryMemberRepository, FixDiscountPolicy 를 의존하지 않는다
     // 단지 인터페이스만 의존
@@ -28,10 +28,10 @@ public class OrderServiceImpl implements OrderService {
     // 2> @Quilifier 사용 @Qualifier("mainDiscountPolicy")
     // 3> @Primary 우선순위 지정
 
-    /*public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
-    }*/
+    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
