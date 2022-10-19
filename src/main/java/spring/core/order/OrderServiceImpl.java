@@ -2,6 +2,7 @@ package spring.core.order;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import spring.core.annotation.MainDiscountPolicy;
 import spring.core.discount.DiscountPolicy;
 import spring.core.member.Member;
 import spring.core.member.MemberRepository;
@@ -17,7 +18,7 @@ public class OrderServiceImpl implements OrderService {
     // 누군가가 클라이언트인 OrderServiceImpl에 Disco untPolicy 구현 객체를 대신 생성하고 주입해주어야 한다.
 
     private final MemberRepository memberRepository;
-    private final DiscountPolicy discountPolicy;
+    private final @MainDiscountPolicy DiscountPolicy discountPolicy;
 
     // 설계 변경으로 OrderServiceImpl 은 MemoryMemberRepository, FixDiscountPolicy 를 의존하지 않는다
     // 단지 인터페이스만 의존
