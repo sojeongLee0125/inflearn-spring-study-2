@@ -22,7 +22,11 @@ public class OrderServiceImpl implements OrderService {
     // 설계 변경으로 OrderServiceImpl 은 MemoryMemberRepository, FixDiscountPolicy 를 의존하지 않는다
     // 단지 인터페이스만 의존
 
-    // 롬복 사용
+    // Autowired 할 때 동일한 타입의 빈이 여러 개 존재할 경우
+    // 1> 필드명, 파라미터 명으로 빈 이름 매칭.
+    // 2> @Quilifier 사용 @Qualifier("mainDiscountPolicy")
+    // 3> @Primary 우선순위 지정
+
     /*public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
