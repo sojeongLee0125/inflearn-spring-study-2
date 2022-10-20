@@ -3,7 +3,7 @@ package spring.core.lifecycle;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 
-public class NetworkClient implements InitializingBean, DisposableBean {
+public class NetworkClient {
     private String url;
 
     // 스프링 빈 라이프 사이클 : 객체 생성 후 의존관계 주입 => 필요한 데이터 사용할 수 있는 준비 완료
@@ -35,17 +35,15 @@ public class NetworkClient implements InitializingBean, DisposableBean {
 
     }
 
-    // 스프링 전용 인터페이스, 스프링에 의존
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        System.out.println("NetworkClient.afterPropertiesSet");
+
+    public void init() {
+        System.out.println("NetworkClient.init");
         connect();
         call("초기화 연결 메세지");
     }
 
-    @Override
-    public void destroy() throws Exception {
-        System.out.println("NetworkClient.destroy");
+    public void close() {
+        System.out.println("NetworkClient.close");
         disconnect();
     }
 }
