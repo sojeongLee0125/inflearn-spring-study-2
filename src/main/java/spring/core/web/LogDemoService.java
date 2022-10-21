@@ -9,12 +9,12 @@ import spring.core.common.MyLogger;
 @RequiredArgsConstructor
 public class LogDemoService {
 
-    private final ObjectProvider<MyLogger> myLoggerProvider;
+//    private final ObjectProvider<MyLogger> myLoggerProvider;
+    private final MyLogger myLogger;
 
     public void logic(String id) {
         // 같은 http 요청이면 같은 스프링 빈을 반환해준다.
-        MyLogger myLogger = myLoggerProvider.getObject();
+        // MyLogger myLogger = myLoggerProvider.getObject();
         myLogger.log("service id =" + id);
-
     }
 }
